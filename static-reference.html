@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskEarn Pro - Earn Money Online by Completing Simple Tasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #1e3a8a 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #ffffff;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+        
+        .pricing-popular {
+            position: relative;
+            border: 2px solid #3b82f6;
+            transform: scale(1.05);
+        }
+        
+        .pricing-popular::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .testimonial-card {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .accordion-content.active {
+            max-height: 300px;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 0;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .stat-number {
+                font-size: 1.75rem;
+            }
+        }
+        
+        .hero-stats {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+        }
+        
+        .navbar-blur {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        @media print {
+            .sticky-cta {
+                display: none;
+            }
+            
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white smooth-scroll">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="flex items-center justify-center">
+                            <img src="logo.png" alt="" width="170">
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-900 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">Home</a>
+                        <a href="#features" class="text-gray-600 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">Features</a>
+                        <a href="#pricing" class="text-gray-600 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">Pricing</a>
+                        <a href="#testimonials" class="text-gray-600 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">Reviews</a>
+                        <a href="#faq" class="text-gray-600 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">FAQ</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-colors duration-300">Login</a>
+                        <a href="#" class="btn-primary text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:hidden">
+                    <button class="text-gray-600 hover:text-gray-900 p-2 rounded-lg" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+      
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-8 leading-tight">
+                    Earn Money Online by<br>
+                    <span class="text-green-300">Completing Simple Tasks</span>
+                </h1>
+                <p class="text-xl lg:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
+                    Join thousands of users who are earning extra income by completing surveys, micro-tasks, and online activities. Start earning today with our trusted platform.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <button class="bg-white text-blue-600 px-10 py-5 rounded-xl text-xl font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1">
+                        <i class="fas fa-rocket mr-3"></i>Start Earning Now
+                    </button>
+                    <button class="border-2 border-white text-white px-10 py-5 rounded-xl text-xl font-bold hover:bg-white hover:text-blue-600 transition-all duration-300">
+                        <i class="fas fa-play mr-3"></i>Purchase Plan
+                    </button>
+                </div>
+                
+                <!-- Improved Statistics Section -->
+                <div class="max-w-5xl mx-auto">
+                    <div class="hero-stats rounded-3xl p-8 lg:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                            <div class="stat-card rounded-2xl p-6 lg:p-8 text-center">
+                                <div class="stat-number">$2.5M+</div>
+                                <div class="stat-label">Total Paid Out</div>
+                            </div>
+                            <div class="stat-card rounded-2xl p-6 lg:p-8 text-center">
+                                <div class="stat-number">150K+</div>
+                                <div class="stat-label">Active Users</div>
+                            </div>
+                            <div class="stat-card rounded-2xl p-6 lg:p-8 text-center">
+                                <div class="stat-number">4.8★</div>
+                                <div class="stat-label">User Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6">How It Works</h2>
+                <p class="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto">Start earning in just three simple steps</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="text-center group">
+                    <div class="w-24 h-24 gradient-bg rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                        <i class="fas fa-user-plus text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">1. Sign Up</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Create your free account in less than 2 minutes. No hidden fees or setup costs required. Get instant access to our task marketplace.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-24 h-24 gradient-bg rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                        <i class="fas fa-tasks text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">2. Do Tasks</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Complete surveys, data entry, app testing, and other simple online tasks at your own pace. Work from anywhere, anytime.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-24 h-24 gradient-bg rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                        <i class="fas fa-dollar-sign text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">3. Get Paid</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Receive payments directly to your PayPal, bank account, or crypto wallet. Fast, secure, and reliable payments guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase -->
+    <section id="features" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6">Why Choose Earn Shadow?</h2>
+                <p class="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto">Everything you need to start earning money online</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Secure & Trusted</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Bank-level security with SSL encryption and verified payment systems. Your data and earnings are completely safe.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Flexible Schedule</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Work whenever you want, wherever you are. No fixed hours or commitments. Perfect for students and freelancers.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Instant Payments</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Get paid within 24 hours of completing tasks. No waiting periods, no delays. Your money, your time.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Track Earnings</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Real-time dashboard to monitor your progress and earnings history. Advanced analytics to optimize your income.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-headset text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">24/7 Support</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Dedicated customer support team available around the clock. Get help whenever you need it.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl shadow-xl card-hover border border-gray-100">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+                        <i class="fas fa-medal text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Rewards Program</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Earn bonus points and unlock exclusive tasks with higher payouts. The more you work, the more you earn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Statistics Section -->
+    <section class="section-padding gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-white mb-6">Trusted by Thousands</h2>
+                <p class="text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto">Join our growing community of successful earners worldwide</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="stat-card rounded-3xl p-8 text-center">
+                    <div class="stat-number counter" data-target="2500000">$0</div>
+                    <div class="stat-label">Total Payouts</div>
+                </div>
+                <div class="stat-card rounded-3xl p-8 text-center">
+                    <div class="stat-number counter" data-target="150000">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card rounded-3xl p-8 text-center">
+                    <div class="stat-number counter" data-target="5000000">0</div>
+                    <div class="stat-label">Tasks Completed</div>
+                </div>
+                <div class="stat-card rounded-3xl p-8 text-center">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section id="pricing" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6">Choose Your Plan</h2>
+                <p class="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto">Start free and upgrade as you earn more</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+                <!-- Basic Plan -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 card-hover">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Basic</h3>
+                    <div class="text-5xl font-black text-gray-900 mb-8">
+                        Free
+                        <span class="text-xl font-normal text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Up to 10 tasks per day</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Basic surveys</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Weekly payouts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Email support</span>
+                        </li>
+                    </ul>
+                    <button class="w-full border-2 border-blue-600 text-blue-600 py-4 rounded-xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300">
+                        Get Started Free
+                    </button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 card-hover pricing-popular">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Pro</h3>
+                    <div class="text-5xl font-black text-gray-900 mb-8">
+                        $9.99
+                        <span class="text-xl font-normal text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Unlimited tasks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Premium surveys</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Daily payouts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Priority support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg font-semibold text-blue-600">20% bonus earnings</span>
+                        </li>
+                    </ul>
+                    <button class="w-full btn-primary text-white py-4 rounded-xl text-lg font-bold shadow-lg">
+                        Upgrade to Pro
+                    </button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 card-hover">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Premium</h3>
+                    <div class="text-5xl font-black text-gray-900 mb-8">
+                        $19.99
+                        <span class="text-xl font-normal text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Everything in Pro</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Exclusive high-paying tasks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Instant withdrawals</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg">Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-4 text-lg"></i>
+                            <span class="text-lg font-semibold text-purple-600">50% bonus earnings</span>
+                        </li>
+                    </ul>
+                    <button class="w-full border-2 border-gray-300 text-gray-700 py-4 rounded-xl text-lg font-bold hover:border-blue-600 hover:text-blue-600 transition-all duration-300">
+                        Go Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-8">Your Security is Our Priority</h2>
+                    <p class="text-xl lg:text-2xl text-gray-600 mb-12">We use industry-leading security measures to protect your data and earnings.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-lock text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">SSL Encryption</h3>
+                                <p class="text-lg text-gray-600">All data transmitted through our platform is protected with 256-bit SSL encryption, the same standard used by banks.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Fraud Protection</h3>
+                                <p class="text-lg text-gray-600">Advanced AI-powered systems monitor for fraudulent activities 24/7, ensuring a safe environment for all users.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-user-shield text-purple-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Privacy Protection</h3>
+                                <p class="text-lg text-gray-600">Your personal information is never shared with third parties without your explicit consent. Full GDPR compliance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-12 lg:p-16">
+                        <div class="w-32 h-32 gradient-bg rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                            <i class="fas fa-certificate text-white text-5xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">SOC 2 Certified</h3>
+                        <p class="text-lg text-gray-600 mb-8">Independently audited and certified for security, availability, and confidentiality.</p>
+                        <div class="flex justify-center space-x-6">
+                            <div class="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                                <i class="fas fa-check-circle text-green-500 text-3xl"></i>
+                            </div>
+                            <div class="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                                <i class="fas fa-award text-blue-500 text-3xl"></i>
+                            </div>
+                            <div class="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                                <i class="fas fa-star text-yellow-500 text-3xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6">What Our Users Say</h2>
+                <p class="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto">Real stories from real people earning with TaskEarn Pro</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 testimonial-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-user text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold text-gray-900">Sarah Johnson</div>
+                            <div class="text-gray-500 text-lg">College Student</div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">"I've been using TaskEarn Pro for 6 months and have earned over $2,000! It's perfect for my schedule and the tasks are actually fun to complete. Highly recommended!"</p>
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 testimonial-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-user text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold text-gray-900">Mike Chen</div>
+                            <div class="text-gray-500 text-lg">Freelancer</div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">"The platform is incredibly user-friendly and payments are always on time. I love that I can work whenever I want and still make good money consistently."</p>
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 testimonial-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-user text-purple-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold text-gray-900">Emma Davis</div>
+                            <div class="text-gray-500 text-lg">Stay-at-home Mom</div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">"TaskEarn Pro has been a game-changer for my family. I can earn extra income while taking care of my kids. The flexibility is absolutely amazing!"</p>
+                    <div class="flex text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App Promotion -->
+    <section class="section-padding gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-black text-white mb-8">Earn On-the-Go with Our Mobile App</h2>
+                    <p class="text-xl lg:text-2xl text-blue-100 mb-12">Download our mobile app and start earning anywhere, anytime. Complete tasks during your commute, lunch break, or while watching TV.</p>
+                    <div class="space-y-6 mb-12">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-300 mr-4 text-2xl"></i>
+                            <span class="text-xl text-white">Offline task completion</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-300 mr-4 text-2xl"></i>
+                            <span class="text-xl text-white">Push notifications for new tasks</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-300 mr-4 text-2xl"></i>
+                            <span class="text-xl text-white">Real-time earnings tracking</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-300 mr-4 text-2xl"></i>
+                            <span class="text-xl text-white">Instant withdrawal requests</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center hover:bg-gray-800 transition-all duration-300 shadow-2xl">
+                            <i class="fab fa-apple mr-4 text-3xl"></i>
+                            <div class="text-left">
+                                <div class="text-sm">Download on the</div>
+                                <div class="text-xl font-bold">App Store</div>
+                            </div>
+                        </button>
+                        <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center hover:bg-gray-800 transition-all duration-300 shadow-2xl">
+                            <i class="fab fa-google-play mr-4 text-3xl"></i>
+                            <div class="text-left">
+                                <div class="text-sm">Get it on</div>
+                                <div class="text-xl font-bold">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="relative">
+                        <div class="w-80 h-96 bg-white/10 backdrop-blur-sm rounded-3xl mx-auto p-8 border border-white/20 shadow-2xl">
+                            <div class="w-full h-full bg-gradient-to-b from-white/20 to-white/5 rounded-2xl flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-mobile-alt text-6xl text-white mb-6"></i>
+                                    <div class="text-white font-bold text-xl">Earn Shadow App</div>
+                                    <div class="text-blue-200 text-lg">Coming Soon</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6">Frequently Asked Questions</h2>
+                <p class="text-xl lg:text-2xl text-gray-600">Everything you need to know about earning with TaskEarn Pro</p>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl shadow-lg">
+                    <button class="w-full text-left p-8 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-bold text-gray-900">How much can I earn with TaskEarn Pro?</span>
+                        <i class="fas fa-chevron-down text-gray-500 transform transition-transform text-xl"></i>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-lg text-gray-600">Earnings vary based on the time you invest and tasks you complete. Our users typically earn between $200-$2,000 per month. Top earners who dedicate more time can make even more.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg">
+                    <button class="w-full text-left p-8 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-bold text-gray-900">When and how do I get paid?</span>
+                        <i class="fas fa-chevron-down text-gray-500 transform transition-transform text-xl"></i>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-lg text-gray-600">Payments are processed weekly for Basic users, daily for Pro users, and instantly for Premium users. You can withdraw to PayPal, bank account, or cryptocurrency wallet once you reach the minimum threshold of $10.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg">
+                    <button class="w-full text-left p-8 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-bold text-gray-900">What types of tasks are available?</span>
+                        <i class="fas fa-chevron-down text-gray-500 transform transition-transform text-xl"></i>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-lg text-gray-600">We offer various tasks including surveys, data entry, app testing, content moderation, transcription, and research tasks. New tasks are added daily to keep things interesting and maximize earning opportunities.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg">
+                    <button class="w-full text-left p-8 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-bold text-gray-900">Is TaskEarn Pro available worldwide?</span>
+                        <i class="fas fa-chevron-down text-gray-500 transform transition-transform text-xl"></i>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-lg text-gray-600">Yes! TaskEarn Pro is available in over 150 countries. However, task availability and payment methods may vary by location. Check our country-specific pages for detailed information.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg">
+                    <button class="w-full text-left p-8 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="text-xl font-bold text-gray-900">Do I need any special skills or experience?</span>
+                        <i class="fas fa-chevron-down text-gray-500 transform transition-transform text-xl"></i>
+                    </button>
+                    <div class="accordion-content px-8">
+                        <p class="text-lg text-gray-600">No special skills required! Most tasks are designed for anyone to complete. We provide clear instructions and training materials. Some higher-paying tasks may require specific skills, but there are plenty of opportunities for everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section-padding gradient-bg">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl lg:text-6xl font-black text-white mb-8">Ready to Start Earning?</h2>
+            <p class="text-xl lg:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">Join thousands of users who are already earning extra income with TaskEarn Pro. Start your journey today!</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                <button class="bg-white text-blue-600 px-12 py-5 rounded-xl text-xl font-black hover:bg-gray-50 transition-all duration-300 shadow-2xl transform hover:-translate-y-1">
+                    <i class="fas fa-rocket mr-3"></i>Start Earning Now
+                </button>
+                <button class="border-2 border-white text-white px-12 py-5 rounded-xl text-xl font-black hover:bg-white hover:text-blue-600 transition-all duration-300">
+                    <i class="fas fa-question-circle mr-3"></i>Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-tasks text-white text-xl"></i>
+                        </div>
+                        <span class="ml-4 text-2xl font-bold">TaskEarn Pro</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-lg mb-8">The most trusted platform for earning money online through simple tasks and surveys.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-8">Platform</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">How it Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Task Categories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-8">Support</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Status Page</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Bug Reports</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-8">Company</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Press Kit</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col lg:flex-row justify-between items-center">
+                <div class="text-gray-400 mb-4 lg:mb-0 text-lg">
+                    © 2025 TaskEarn Pro. All rights reserved.
+                </div>
+                <div class="flex items-center space-x-8 text-gray-400">
+                    <span class="flex items-center text-lg">
+                        <i class="fas fa-shield-alt mr-3 text-green-400 text-xl"></i>
+                        SSL Secured
+                    </span>
+                    <span class="flex items-center text-lg">
+                        <i class="fas fa-award mr-3 text-blue-400 text-xl"></i>
+                        SOC 2 Certified
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta">
+        <button class="bg-green-500 text-white px-8 py-4 rounded-full shadow-2xl font-bold text-lg hover:bg-green-600 transition-all duration-300">
+            <i class="fas fa-plus mr-2"></i>Join Now
+        </button>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Accordion Toggle
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                if (otherContent !== content) {
+                    otherContent.classList.remove('active');
+                    otherContent.parentElement.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-blur');
+            } else {
+                navbar.classList.remove('navbar-blur');
+            }
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        if (target === 2500000) {
+                            counter.textContent = '$' + (current / 1000000).toFixed(1) + 'M+';
+                        } else if (target === 150000) {
+                            counter.textContent = Math.ceil(current / 1000) + 'K+';
+                        } else if (target === 5000000) {
+                            counter.textContent = (current / 1000000).toFixed(0) + 'M+';
+                        }
+                        setTimeout(updateCounter, 20);
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer for counter animation
+        const statsSection = document.querySelector('.counter').closest('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.querySelector('.lg\\:hidden button');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Lazy loading for images (if any are added later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
